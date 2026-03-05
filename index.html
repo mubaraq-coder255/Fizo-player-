@@ -3,121 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fizo Movies Player - Burudani Kiganjani Mwako</title>
+    <title>Fizo Movies Player</title>
     <style>
-        body {
-            background-color: #1a1a1a;
-            color: #d4af37;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            background-color: #262626;
-            border: 2px solid #d4af37;
-            border-radius: 20px;
-            padding: 30px;
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .logo {
-            width: 150px;
-            height: auto;
-            border-radius: 50%;
-            border: 3px solid #d4af37;
-            margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
-
-        h1 {
-            font-size: 22px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        p.slogan {
-            font-style: italic;
-            font-size: 13px;
-            color: #f9e29b;
-            margin-bottom: 25px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #d4af37;
-            border-radius: 10px;
-            background: #333;
-            color: white;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        button {
-            background-color: #d4af37;
-            color: #000;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background-color: #f9e29b;
-            transform: scale(1.02);
-        }
-
-        .note {
-            margin-top: 15px;
-            font-size: 11px;
-            color: #888;
-        }
+        body { background-color: #1a1a1a; color: #d4af37; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .container { background-color: #262626; border: 2px solid #d4af37; border-radius: 20px; padding: 30px; width: 100%; max-width: 400px; text-align: center; }
+        .logo { width: 120px; border-radius: 50%; border: 2px solid #d4af37; margin-bottom: 15px; }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #d4af37; background: #333; color: white; box-sizing: border-box; }
+        button { background-color: #d4af37; color: black; padding: 15px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <img src="fizo-logo.png" alt="Fizo Movies Logo" class="logo">
-        
-        <h1>FIZO MOVIES PLAYER</h1>
-        <p class="slogan">"Burudani Kiganjani Mwako"</p>
-
-        <input type="text" id="terabox-url" placeholder="Paste Link ya TeraBox hapa...">
-        <button onclick="playMovie()">CHEZA MUVI SASA</button>
-
-        <p class="note">Muvi itafunguka kwenye ukurasa mpya kwa ubora wa HD.</p>
+        <img src="fizo-logo.png" class="logo">
+        <h1>FIZO MOVIES</h1>
+        <p>"Burudani Kiganjani Mwako"</p>
+        <input type="text" id="link" placeholder="Weka Link ya TeraBox hapa...">
+        <button onclick="funguaMuvi()">CHEZA MUVI SASA</button>
+        <p style="font-size: 10px; margin-top: 20px; color: #888;">Kidokezo: Muvi itafunguka salama kwenye ukurasa mpya.</p>
     </div>
 
     <script>
-        function playMovie() {
-            const url = document.getElementById('terabox-url').value;
+        function funguaMuvi() {
+            var url = document.getElementById('link').value;
             if(url) {
-                // Tunatumia terabox.beer ambayo inakubali video kucheza bila kuzuia
-                const cleanUrl = url.trim();
-                const playerUrl = "https://www.terabox.beer/play?url=" + cleanUrl;
+                // Hapa tunatumia 'replace' ili kuifanya link iwe ya kucheza moja kwa moja
+                var playUrl = url.replace("terabox.com", "terabox.beer");
+                playUrl = playUrl.replace("1024terabox.com", "terabox.beer");
                 
-                // Hii inafungua muvi moja kwa moja
-                window.open(playerUrl, "_blank");
+                // Hii inafungua muvi bila kizuizi chochote!
+                window.location.href = "https://www.terabox.beer/play?url=" + encodeURIComponent(url);
             } else {
-                alert("Tafadhali weka link kwanza!");
+                alert("Tafadhali weka link!");
             }
         }
     </script>
-
 </body>
 </html>
