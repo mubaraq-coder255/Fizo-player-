@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fizo Movies Player - Burudani Kiganjani Mwako</title>
     <style>
-        /* Muonekano wa Kishua (Gold & Dark Theme) */
         body {
-            background-color: #1a1a1a; /* Rangi ya giza kwa nyuma */
-            color: #d4af37; /* Rangi ya Gold kwa maandishi */
+            background-color: #1a1a1a;
+            color: #d4af37;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -21,16 +20,15 @@
 
         .container {
             background-color: #262626;
-            border: 2px solid #d4af37; /* Fremu ya Gold */
+            border: 2px solid #d4af37;
             border-radius: 20px;
             padding: 30px;
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Nembo Yako */
         .logo {
             width: 150px;
             height: auto;
@@ -41,7 +39,7 @@
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -49,28 +47,29 @@
 
         p.slogan {
             font-style: italic;
-            font-size: 14px;
+            font-size: 13px;
             color: #f9e29b;
             margin-bottom: 25px;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             margin-bottom: 20px;
             border: 1px solid #d4af37;
-            border-radius: 8px;
+            border-radius: 10px;
             background: #333;
             color: white;
             box-sizing: border-box;
+            text-align: center;
         }
 
         button {
             background-color: #d4af37;
             color: #000;
-            padding: 12px 30px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
@@ -83,16 +82,10 @@
             transform: scale(1.02);
         }
 
-        /* Sehemu ya Video itakapotokea */
-        #video-container {
-            margin-top: 25px;
-            width: 100%;
-        }
-
-        iframe {
-            width: 100%;
-            border-radius: 10px;
-            border: 1px solid #d4af37;
+        .note {
+            margin-top: 15px;
+            font-size: 11px;
+            color: #888;
         }
     </style>
 </head>
@@ -101,30 +94,25 @@
     <div class="container">
         <img src="fizo-logo.png" alt="Fizo Movies Logo" class="logo">
         
-        <h1>Fizo Movies Player</h1>
+        <h1>FIZO MOVIES PLAYER</h1>
         <p class="slogan">"Burudani Kiganjani Mwako"</p>
 
-        <input type="text" id="terabox-url" placeholder="Weka TeraBox Link Hapa...">
-        <button onclick="fetchVideo()">CHEZA MUVI SASA</button>
+        <input type="text" id="terabox-url" placeholder="Paste Link ya TeraBox hapa...">
+        <button onclick="playMovie()">CHEZA MUVI SASA</button>
 
-        <div id="video-container">
-            </div>
+        <p class="note">Muvi itafunguka kwenye ukurasa mpya kwa ubora wa HD.</p>
     </div>
 
     <script>
-        function fetchVideo() {
+        function playMovie() {
             const url = document.getElementById('terabox-url').value;
-            const container = document.getElementById('video-container');
-            
             if(url) {
-                // Hapa tunaweka mfumo wa ku-fetch (unategemea API ya player uliyochagua)
-                // Kwa mfano huu, tunatumia mfumo wa embed wa kitalamu
-                container.innerHTML = `<p style='color:white;'>Inapakia video...</p>`;
+                // Tunatumia terabox.beer ambayo inakubali video kucheza bila kuzuia
+                const cleanUrl = url.trim();
+                const playerUrl = "https://www.terabox.beer/play?url=" + cleanUrl;
                 
-                // Mfano wa jinsi video inavyoweza kutokea (Iframe)
-                setTimeout(() => {
-                    container.innerHTML = `<iframe height="250" src="${url}" frameborder="0" allowfullscreen></iframe>`;
-                }, 1000);
+                // Hii inafungua muvi moja kwa moja
+                window.open(playerUrl, "_blank");
             } else {
                 alert("Tafadhali weka link kwanza!");
             }
@@ -133,4 +121,3 @@
 
 </body>
 </html>
-
