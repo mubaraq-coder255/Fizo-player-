@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fizo Movies Player</title>
     <style>
-        body { background-color: #1a1a1a; color: #d4af37; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .container { background-color: #262626; border: 2px solid #d4af37; border-radius: 20px; padding: 30px; width: 100%; max-width: 400px; text-align: center; }
-        .logo { width: 120px; border-radius: 50%; border: 2px solid #d4af37; margin-bottom: 15px; }
-        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #d4af37; background: #333; color: white; box-sizing: border-box; }
-        button { background-color: #d4af37; color: black; padding: 15px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; }
+        body { background-color: #1a1a1a; color: #d4af37; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; }
+        .container { background-color: #262626; border: 2px solid #d4af37; border-radius: 20px; padding: 30px; width: 100%; max-width: 400px; }
+        .logo { width: 120px; border-radius: 50%; border: 2px solid #d4af37; margin-bottom: 20px; }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 10px; border: 1px solid #d4af37; background: #333; color: white; box-sizing: border-box; text-align: center; }
+        button { background-color: #d4af37; color: black; padding: 15px; border: none; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer; font-size: 16px; }
     </style>
 </head>
 <body>
@@ -19,24 +19,22 @@
         <p>"Burudani Kiganjani Mwako"</p>
         <input type="text" id="link" placeholder="Weka Link ya TeraBox hapa...">
         <button onclick="funguaMuvi()">CHEZA MUVI SASA</button>
-        <p style="font-size: 10px; margin-top: 20px; color: #888;">Kidokezo: Muvi itafunguka salama kwenye ukurasa mpya.</p>
+        <p style="font-size: 11px; margin-top: 20px; color: #888;">
+            Ukifungua link, utaweza ku-play, kudownload, au kusave muvi kwenye akaunti yako ya TeraBox.
+        </p>
     </div>
 
     <script>
         function funguaMuvi() {
             var url = document.getElementById('link').value;
             if(url) {
-                // Hapa tunatumia 'replace' ili kuifanya link iwe ya kucheza moja kwa moja
-                var playUrl = url.replace("terabox.com", "terabox.beer");
-                playUrl = playUrl.replace("1024terabox.com", "terabox.beer");
-                
-                // Hii inafungua muvi bila kizuizi chochote!
-                window.location.href = "https://www.terabox.beer/play?url=" + encodeURIComponent(url);
+                // Hii inampeleka mteja kwenye link ya asili ya TeraBox 
+                // Ambapo ana control zote (Play/Download/Save)
+                window.open(url, "_blank");
             } else {
-                alert("Tafadhali weka link!");
+                alert("Tafadhali weka link ya muvi kwanza!");
             }
         }
     </script>
 </body>
 </html>
-.
